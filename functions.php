@@ -67,11 +67,7 @@ function edit() {
     $fullname    =  escape($_POST['fullname1']);
 	$email       =  escape($_POST['email1']);
 
-	$logged_in_user_id = mysqli_insert_id($conn);
-	$id = getUserById($logged_in_user_id);
-	$_SESSION['user'] = getUserById($logged_in_user_id);
-
-	mysqli_query($conn, "UPDATE `users` SET `username` = '$username', `fullname` = '$fullname', `email`='$email' WHERE 1");
+	mysqli_query($conn, "UPDATE `users` SET `username` = '$username', `fullname` = '$fullname', `email`='$email' WHERE `username` = '$username'");
 	
 	$_SESSION['success']  = "Change successfully";
 	// // header("Refresh:2; url=page2.php");
